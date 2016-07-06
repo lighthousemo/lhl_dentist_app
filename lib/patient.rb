@@ -2,6 +2,10 @@
 class Patient < ActiveRecord::Base
   # Associations
   has_many :appointments
+  has_many :dentists, through: :appointments
+  # Assumptions
+  # - appointments table has a column called dentist_id
+  # - there is a Dentist class
 
   validates :first_name, presence: true, length: { minimum: 2, message: "blah"}
   validates :last_name, presence: true

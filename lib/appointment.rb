@@ -3,4 +3,5 @@ class Appointment < ActiveRecord::Base
   # Assumtions:
   # - patient_id column inside the appointments table
   # - there is a Patient class
+  belongs_to :dentist
 end

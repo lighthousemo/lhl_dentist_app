@@ -2,6 +2,7 @@ require 'pry' # in case you want to use binding.pry
 require 'active_record'
 require_relative './lib/patient.rb'
 require_relative './lib/appointment.rb'
+require_relative './lib/dentist.rb'
 
 # Output messages from Active Record to standard out
 ActiveRecord::Base.logger = Logger.new(STDOUT)
@@ -44,6 +45,10 @@ ActiveRecord::Schema.define do
     t.timestamps null: false
   end
 
+  create_table :dentists do |t|
+    t.column :name, :string
+  end
+
 
 end
 
@@ -63,11 +68,18 @@ bob = Patient.create(first_name: "Bob", last_name: "Smith", patient_since: 1.mon
 jenny = Patient.new(first_name: "Jenny", patient_since: 1.year.ago)
 jenny.last_name = "Smith"
 jenny.save
+drg = Dentist.create(name: "Dr. G")
 
-Appointment.create(patient_id: bob.id, on_date: 5.days.from_now)
 
+Appointment.create(patient_id: bob.id, dentist_id: drg.id, on_date: 5.days.from_now)
 # To get bob's appointments
 bob.appointments
+
+bob.appointments.create(dentist_id: drg.id, on_date: 1.month.from_now)
+
+# Get all the dentists who have appointments with bob
+bob.dentists
+
 
 
 
