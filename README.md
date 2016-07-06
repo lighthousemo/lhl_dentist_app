@@ -1,5 +1,25 @@
 # ActiveRecord Demo
 
+# ORM Review
+
+- An instance of a class (a.k.a an object) represents a row
+- A class represents a table
+
+### How does ActiveRecord fit in
+
+```
+   ruby   --->     pg gem   --->   Postgres
+   ruby   --->    ActiveRecrod --->  pg gem   --->   Postgres
+   ruby   --->    ActiveRecrod --->  sqlite3 gem   --->   Postgres
+```
+
+
+
+
+
+
+
+
 ## Naming Conventions
 AR conventions require tables to be pluralized and lowercase. `articles`  or `blog_articles`.
 
